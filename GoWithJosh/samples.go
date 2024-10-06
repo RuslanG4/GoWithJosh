@@ -2,6 +2,32 @@ package main
 
 import "fmt"
 
+func numOfRomanNumeralCharacters( input string)(int){
+	romanNumeralStr:= [7]rune{'I', 'V', 'X', 'L', 'C', 'D', 'M'}
+
+	numOfRomanNumerals := 0
+
+	for i := 0; i < len(input); i++ {
+		for k := 0; k < len(input); k++ {
+			if rune(input[i]) == romanNumeralStr[k]{
+				numOfRomanNumerals++
+				break
+			}
+
+		}
+	}
+
+	return numOfRomanNumerals 
+}
+func romanNumeralIsValid( input string )( bool ){
+
+	inputIsShortEnough := len(input) < 15
+	yearIsSmallEnough := romanNumeral( input) < 4000
+
+	everyCharacterIsRomanNumeral := numOfRomanNumeralCharacters(input) == len(input)
+
+	return inputIsShortEnough && yearIsSmallEnough && everyCharacterIsRomanNumeral
+}
 func romanNumeral( input string )( int ){
 
 	MAX_ROMAN_NUMERALS := int(7)
@@ -68,14 +94,24 @@ func removeDuplicates(array []int) []int {
 }
 
 func main() {
-	myArray := make([]int, 5)
-	myArray[0] = 4
-	myArray[1] = 3
-	myArray[2] = 5
-	myArray[3] = 3
-	myArray[4] = 5
-	//fmt.Println(myArray)
-	removeDuplicates(myArray)
-	//fmt.Println(myArray)
+	myArray := make([]string, 5)
+	myArray[0] = "IV"
+	myArray[1] ="penis"
+	myArray[2] = "V"
+	myArray[3] = "MMII"
+	myArray[4] = "poI"
+
+	for i := 0; i < len( myArray); i ++{
+		fmt.Println(myArray[i])
+		if romanNumeralIsValid( myArray[i]) {
+			fmt.Println(romanNumeral(myArray[i]) " is")
+		}
+		
+	}
+	
+
+
+
+	
 
 }
