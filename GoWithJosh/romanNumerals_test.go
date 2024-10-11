@@ -2,19 +2,72 @@ package main
 
 import "testing"
 
-func RomanTest(t *testing.T) {
-	myArray := make([]string, 1)
-	myArray[0] = "III"
-	myArray[1] = "IV"
-	myArray[0] = "M"
+func TestIndividualRomanNumerals(t *testing.T) {
+	NUM_OF_TESTS := 7
 
-	got :=  make([]int, 1)
-	got[0] = romanNumeral(myArray[0])
-	want := []int{3, 4, 1000}
+	// input and expected out puts
+	myArray := []string{ "I", "V", "X", "L", "C", "D", "M"}
+	want := []int{ 1, 5, 10, 50, 100, 500, 1000}
 
-	for intiger := range len(got) {
-		if got[intiger] != want[intiger] {
-			t.Errorf("got %q, wanted %q", got[intiger], want)
+	got :=  make([]int, NUM_OF_TESTS)
+
+	// using function
+	for i:= range len(got){
+		got[i] = romanNumeral(myArray[i])
+	}
+	
+	// compairing to expected
+	for i := range len(got) {
+		if got[i] != want[i] {
+			t.Errorf("got %q, wanted %q", got[i], want)
 		}
 	}
 }
+
+func TestReversePairings(t *testing.T) {
+	NUM_OF_TESTS := 6
+
+	// input and expected out puts
+	myArray := []string{ "IV", "IX", "XL", "XC", "CD", "CM"}
+	want := []int{ 4, 9, 40, 90, 400, 900 }
+
+	got :=  make([]int, NUM_OF_TESTS)
+
+	// using function
+	for i:= range len(got){
+		got[i] = romanNumeral(myArray[i])
+	}
+	
+	// compairing to expected
+	for i := range len(got) {
+		if got[i] != want[i] {
+			t.Errorf("got %q, wanted %q", got[i], want)
+		}
+	}
+}
+
+func TestBigNumbers(t *testing.T){
+	NUM_OF_TESTS := 1
+
+	// input and expected out puts
+	myArray := []string{ "MMCCCXXXIIIIV"}//, "IX", "XL", "XC", "CD", "CM"}
+	want := []int{ 2333}//, 9, 40, 90, 400, 900 }
+
+	got :=  make([]int, NUM_OF_TESTS)
+
+	// using function
+	for i:= range len(got){
+		got[i] = romanNumeral(myArray[i])
+	}
+	
+	// compairing to expected
+	for i := range len(got) {
+		if got[i] != want[i] {
+			t.Errorf("got %d, wanted %d", got[i], want)
+		}
+	}
+}
+
+// reverse pairings 
+// big numbers with reverses
+// big numbers no reverses
